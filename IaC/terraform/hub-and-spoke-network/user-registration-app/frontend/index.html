@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Registration</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="card">
+    <h1>Register</h1>
+    <p class="subtitle">Username must be new, and age must be over 18.</p>
+
+    <form id="registration-form">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" placeholder="e.g. jane_doe" required />
+
+      <label for="age">Age</label>
+      <input type="number" id="age" name="age" placeholder="e.g. 25" min="0" max="150" required />
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <div id="result" class="result" role="status"></div>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

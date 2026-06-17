@@ -1,0 +1,29 @@
+services:
+  backend:
+    build: ./backend
+    container_name: user-registration-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_PATH=/data/app.db
+    volumes:
+      # Persist the SQLite database file on the host so data survives
+      # container restarts / rebuilds.
+      - backend-data:/data
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: user-registration-frontend
+    ports:
+      - "8080:80"
+    environment:
+      # The browser calls this URL directly, so it must be reachable
+      # from the user's machine (localhost), not the Docker network name.
+      - API_BASE_URL=http://localhost:8000
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  backend-data:
